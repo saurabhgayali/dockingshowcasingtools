@@ -1,0 +1,39 @@
+<script>
+myjson=[{"name":"name1","class""cat2","min_rmsd":1.45644},"name":"name2","class":"cat1","min_rmsd":-3.45644},"name":"name3","class":"cat1","min_rmsd":-6.45644},{"name":"name4","class":"cat3","min_rmsd":13.45644},{"name":"name5","class":"cat1","min_rmsd":5.45644}]
+</script>
+
+
+<div id="mydiv"></div>
+
+<script>
+function calcrange(myarray){
+var x=myjson.length;
+var text=[];
+for (i = 0; i < x; i++) {
+  text.push(myjson[i]["min_rmsd"]);
+}
+
+
+return text;
+}
+function changeslidervalue(value){
+x=rangeInput.value;
+amount.value=x;
+}
+
+
+function createslider(text){
+max_text=Math.max.apply(Math,text);
+min_text=Math.min.apply(Math,text);
+return '<div class="slidecontainer" style="width:300"px><div style="float:left">'+min_text.toFixed(2)+'</div><div style="float:right">'+max_text.toFixed(2)+'</div><input type="range" min="'+min_text+'" max="'+max_text+'" value="0" class="slider" id="rangeInput" style="width:100%" oninput="changeslidervalue(this.value)"><br><div id="slidervalue" style="width:100%;text-align:center"><output name="amount" id="amount" for="rangeInput">0</output></div></div>';
+}
+
+document.getElementById("mydiv").innerHTML=createslider(calcrange(myjson));
+
+console.log(myjson);
+
+
+
+</script>
+
+
